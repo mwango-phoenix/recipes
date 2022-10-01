@@ -1,5 +1,6 @@
 require("../models/database");
 const Category = require("../models/Category");
+const Recipe = require("../models/Recipe");
 
 /**
  * GET /
@@ -12,11 +13,18 @@ exports.homepage = async (req, res) => {
     //database query to grab categories
     const limitNumber = 5;
     const categories = await Category.find({}).limit(limitNumber);
+    //get latest recipes
+    const latest = await Recipe.find({}).sort({_id:-1}).limit(limitNumber);
+
+    const recent = { latest };
+
+    //get recipes of certain category
+    
 
     //render index page and display categories
-    res.render("index", { title: "My Recipes - Home", categories });
+    res.render("index", { title: "My Recipes - Home", categories, recent });
   } catch (error) {
-    res.status(500).send({message: error.message || "Error Occured"});
+    res.status(500).send({ message: error.message || "Error Occured" });
   }
 };
 
@@ -25,25 +33,35 @@ exports.homepage = async (req, res) => {
  * Categories
  */
 exports.byCategory = async (req, res) => {
-    try {
-      //database query to grab categories
-      const limitNumber = 20;
-      const categories = await Category.find({}).limit(limitNumber);
-  
-      //render index page and display categories
-      res.render("categories", { title: "View Recipes by Category", categories });
-    } catch (error) {
-      res.status(500).send({message: error.message || "Error Occured"});
-    }
-  };
+  try {
+    //database query to grab categories
+    const limitNumber = 20;
+    const categories = await Category.find({}).limit(limitNumber);
 
-//insert data to database
+    //render index page and display categories
+    res.render("categories", { title: "View Recipes by Category", categories });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error Occured" });
+  }
+};
+
+
+
+// //insert data to database
 // async function insertDymmyCategoryData() {
 //   try {
 //     // data to insert
-//     await Category.insertMany([
+//     await Recipe.insertMany([
 //       {
-//         name: "Drinks",
+//         name: "Thai-Chinese-inspired pinch salad",
+//         category: "Breakfast",
+//         ingredients: [
+//           "5 cm piece of ginger",
+//           "1 fresh red chilli",
+//           "25 g sesame seeds",
+//           "24 raw peeled king prawns , from sustainable sources (defrost first, if using frozen)",
+//           "1 pinch Chinese five-spice powder",
+//         ],
 //         image: "drinks.jpeg",
 //       },
 //     ]);
