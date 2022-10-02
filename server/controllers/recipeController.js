@@ -16,10 +16,14 @@ exports.homepage = async (req, res) => {
     //get latest recipes
     const latest = await Recipe.find({}).sort({_id:-1}).limit(limitNumber);
 
-    const recent = { latest };
-
     //get recipes of certain category
+    const drinks = await Recipe.find({ 'category': 'Drinks'}).limit(limitNumber);
+    const breakfast = await Recipe.find({ 'category': 'Breakfast'}).limit(limitNumber);
     
+    const recent = { latest, drinks, breakfast };
+
+
+
 
     //render index page and display categories
     res.render("index", { title: "My Recipes - Home", categories, recent });
@@ -40,6 +44,22 @@ exports.byCategory = async (req, res) => {
 
     //render index page and display categories
     res.render("categories", { title: "View Recipes by Category", categories });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error Occured" });
+  }
+};
+
+/**
+ * GET /recipe/:id
+ * Recipes page
+ */
+ exports.exploreRecipes = async (req, res) => {
+  try {
+    //get recipe id
+    let recipeId = req.params.id;
+    const recipe = await Recipe.findById(recipeId);
+    //render index page and display categories
+    res.render("recipe", { title: "Recipe page", recipe });
   } catch (error) {
     res.status(500).send({ message: error.message || "Error Occured" });
   }

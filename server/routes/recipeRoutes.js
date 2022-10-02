@@ -1,8 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const recipeController = require('../controllers/recipeController');
+const recipeController = require("../controllers/recipeController");
 
 // App Routes - list all pages to link to recipe controller
-router.get('/', recipeController.homepage);
-router.get('/categories', recipeController.byCategory);
+router.get("/", recipeController.homepage);
+router.get("/categories", recipeController.byCategory);
+router.get("/recipe/:id", recipeController.exploreRecipes);
 module.exports = router;
