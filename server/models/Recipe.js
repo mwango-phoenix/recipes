@@ -15,7 +15,7 @@ const recipeSchema = new mongoose.Schema({
         required: 'This field is required.'
     },
     instructions: {
-        type: String, 
+        type: Array, 
         required: 'This field is required.'
     },
     image: {

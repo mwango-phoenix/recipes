@@ -32,11 +32,19 @@
                   </ul>
                 </div>
               </div>
-            <div class="col-12" style="white-space : pre-line">
+            <div class="row pt-5">
+              <div class="col-12">
                  <!-- List of Instructions -->
-              <h4>Instructions</h4><%- recipe.instructions %>
+                <h4>Instructions</h4>
+                <ol>
+                  <!-- go through each ingredient from array -->
+                  <% recipe.instructions.forEach(function (instruction, index) { %>
+                    <li class="pt-2" ><%= instruction %></li>
+                  <%})%>
+                </ol>
+              </div>
             </div>
-          </div>
+        </div>
 
 
         </div>
