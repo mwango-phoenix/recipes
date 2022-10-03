@@ -21,10 +21,7 @@ exports.homepage = async (req, res) => {
     const breakfast = await Recipe.find({ 'category': 'Breakfast'}).limit(limitNumber);
     
     const recent = { latest, drinks, breakfast };
-
-
-
-
+    
     //render index page and display categories
     res.render("index", { title: "My Recipes - Home", categories, recent });
   } catch (error) {
@@ -50,6 +47,23 @@ exports.byCategory = async (req, res) => {
 };
 
 /**
+ * GET /categories/:id
+ * Recipes of a Category
+ */
+ exports.categoryById = async (req, res) => {
+  try {
+    //get Id
+    let categoryId = req.params.id;
+    const limitNumber = 20;
+    const categoryByTag = await Recipe.find({'category' : categoryId}).limit(limitNumber);
+    //render index page and display categories
+    res.render("categories", { title: "Recipes by Category", categoryByTag });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error Occured" });
+  }
+};
+
+/**
  * GET /recipe/:id
  * Recipes page
  */
@@ -60,6 +74,52 @@ exports.byCategory = async (req, res) => {
     const recipe = await Recipe.findById(recipeId);
     //render index page and display categories
     res.render("recipe", { title: "Recipe page", recipe });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error Occured" });
+  }
+};
+
+/**
+ * POST /search
+ * Search for recipe
+ */
+ exports.searchRecipe = async (req, res) => {
+  try {
+    // get search phrase
+    let searchTerm = req.body.searchTerm;
+    let recipeList = await Recipe.find( {$text:{ $search:searchTerm, $diacriticSensitive: true}});
+    res.render("search", { title: "Search Results", recipeList});
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error Occured" });
+  }
+};
+
+/**
+ * GET /explore-recent
+ * Find most recently added
+ */
+ exports.recentRecipes = async (req, res) => {
+  try {
+    const limitNumber = 20;
+    const recipeList = await Recipe.find({}).sort({_id:-1}).limit(limitNumber);
+    //render index page and display categories
+    res.render("explore-recent", { title: "Recently Added", recipeList });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error Occured" });
+  }
+};
+
+/**
+ * GET /random
+ * Return Random recipe
+ */
+ exports.getRandom = async (req, res) => {
+  try {
+    let count = await Recipe.find().countDocuments();
+    let random = Math.floor(Math.random() * count);
+    let recipe = await Recipe.findOne().skip(random).exec();
+    //render index page and display categories
+    res.render("random", { title: "Recently Added", recipe });
   } catch (error) {
     res.status(500).send({ message: error.message || "Error Occured" });
   }
