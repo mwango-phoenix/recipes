@@ -126,6 +126,19 @@ exports.byCategory = async (req, res) => {
 };
 
 
+/**
+ * GET /submit
+ * Add new recipe to database
+ */
+ exports.addRecipe = async (req, res) => {
+  try {
+    //render index page and display categories
+    res.render("submit", { title: "Add New Recipe" });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error Occured" });
+  }
+};
+
 
 // //insert data to database
 // async function insertDymmyCategoryData() {
@@ -136,6 +149,13 @@ exports.byCategory = async (req, res) => {
 //         name: "Thai-Chinese-inspired pinch salad",
 //         category: "Breakfast",
 //         ingredients: [
+//           "5 cm piece of ginger",
+//           "1 fresh red chilli",
+//           "25 g sesame seeds",
+//           "24 raw peeled king prawns , from sustainable sources (defrost first, if using frozen)",
+//           "1 pinch Chinese five-spice powder",
+//         ],
+//         instructions: [
 //           "5 cm piece of ginger",
 //           "1 fresh red chilli",
 //           "25 g sesame seeds",

@@ -1,0 +1,65 @@
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold">Add a Recipe</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead">Add a new recipe you stumbled upon</p>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form action="/submit" enctype="multipart/form-data" method="POST">
+      <div class="row g-3">
+        <!-- get recipe name -->
+        <div class="col-12">
+          <label for="name" class="form-label">Recipe Name</label><br>
+          <input type="text" name="name" id="name">
+        </div>
+
+        <!-- get recipe ingredients -->
+        <div class="col-12">
+          <label for="ingredients" class="form-label">Ingredients</label><br>
+
+          <div class="ingredientList">
+            <div class="ingredientDiv mb-1">
+              <input type="text" name="ingredients">
+            </div>
+          </div>
+        </div>
+
+        <!-- add ingredient button -->
+        <div class="col-12">
+          <button type="button" class="btn btn-outline-primary" id="addIngredients">+ Ingredient</button>
+        </div>
+
+        <!-- get recipe instructions -->
+        <div class="col-12">
+          <label for="instructions" class="form-label">Instructions</label><br>
+          <textarea name="instructions" class="form-control" id="instructions" cols="30" rows="4"></textarea>
+        </div>
+
+        <!-- get category -->
+        <div class="col-12">
+          <label for="category">Select Category</label>
+          <select name="category" id="" class="form-select form-control" aria-label="Category">
+            <option selected>Select Category</option>
+            <option value="Drinks">Drinks</option>
+            <option value="Drinks">Breakfast</option>
+            <!-- <option value="Drinks">Lunch</option>
+            <option value="Drinks">Dinner</option>
+            <option value="Drinks">Snacks</option> -->
+          </select>
+        </div>
+
+        <div class="col-12">
+            <label for="image">Image</label>
+            <input type="file" name="image" accept="image/*" class="form-control">
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit Recipe</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

@@ -11,5 +11,6 @@ router.get("/recipe/:id", recipeController.exploreRecipes);
 router.post("/search", recipeController.searchRecipe);
 router.get("/explore-recent", recipeController.recentRecipes);
 router.get("/random", recipeController.getRandom);
+router.get("/submit", recipeController.addRecipe);
 
 module.exports = router;
