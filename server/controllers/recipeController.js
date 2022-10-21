@@ -1,4 +1,5 @@
 require("../models/database");
+const { isBuffer } = require("util");
 const Category = require("../models/Category");
 const Recipe = require("../models/Recipe");
 
@@ -132,37 +133,100 @@ exports.byCategory = async (req, res) => {
  */
  exports.addRecipe = async (req, res) => {
   try {
+    // Errors to display to user
+    const errorObj = req.flash('infoErrors');
+    // Success messages
+    const submitObj = req.flash('infoSubmit');
     //render index page and display categories
-    res.render("submit", { title: "Add New Recipe" });
+    res.render("submit", { title: "Add New Recipe", errorObj, submitObj });
   } catch (error) {
     res.status(500).send({ message: error.message || "Error Occured" });
   }
 };
 
+/**
+ * Post /submitRecipe
+ * Submit new recipe
+ */
+ exports.submitRecipe = async (req, res) => {
+  try {
+
+    let imageUploadFile;
+    let uploadPath;
+    let newImageName;
+    if(!req.files || Object.keys(req.files).length === 0) {
+      console.log('No files uploaded.');
+    } else {
+      imageUploadFile = req.files.image;
+      newImageName = imageUploadFile.name;
+
+      uploadPath = require('path').resolve('./') + '/public/uploads/' + newImageName;
+      imageUploadFile.mv(uploadPath, function(err) {
+        if(err) return res.status(500).send(err);
+      })
+    }
+    // Add data
+    const newRecipe = new Recipe({
+      name: req.body.name,
+      ingredients:req.body.ingredients,
+      instructions:req.body.instructions,
+      category: req.body.category,
+      image: newImageName
+    });
+
+    await newRecipe.save();
+
+    req.flash('infoSubmit', 'Recipe has been added.');
+    //render index page and display categories
+    res.redirect("/submit");
+  } catch (error) {
+    req.flash('infoErrors', error);
+    res.redirect("/submit");
+  }
+};
+
+
+
+// async function updateRecipe() {
+//   try {
+//     const res = await Recipe.updateOne({name: ''}, {name: ''});
+//     res.n // number of docs matching
+//     res.nModified; //number of docs modified
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
+// async function deleteRecipe() {
+//   try {
+//     await Recipe.deleteOne({name: ''});
+    
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
 
 // //insert data to database
-// async function insertDymmyCategoryData() {
+// async function insertDummyCategoryData() {
 //   try {
 //     // data to insert
-//     await Recipe.insertMany([
+//     await Category.insertMany([
 //       {
-//         name: "Thai-Chinese-inspired pinch salad",
-//         category: "Breakfast",
-//         ingredients: [
-//           "5 cm piece of ginger",
-//           "1 fresh red chilli",
-//           "25 g sesame seeds",
-//           "24 raw peeled king prawns , from sustainable sources (defrost first, if using frozen)",
-//           "1 pinch Chinese five-spice powder",
-//         ],
-//         instructions: [
-//           "5 cm piece of ginger",
-//           "1 fresh red chilli",
-//           "25 g sesame seeds",
-//           "24 raw peeled king prawns , from sustainable sources (defrost first, if using frozen)",
-//           "1 pinch Chinese five-spice powder",
-//         ],
-//         image: "drinks.jpeg",
+//         name: "Breakfast",
+//         image: "breakfast.jpg",
+//       },
+//       {
+//         name: "Lunch",
+//         image: "lunch.jpg",
+//       },
+//       {
+//         name: "Dinner",
+//         image: "dinner.jpg",
+//       },
+//       {
+//         name: "Dessert",
+//         image: "desserts.jpg",
 //       },
 //     ]);
 //   } catch (error) {
@@ -170,4 +234,4 @@ exports.byCategory = async (req, res) => {
 //   }
 // }
 
-// insertDymmyCategoryData();
+// insertDummyCategoryData();
