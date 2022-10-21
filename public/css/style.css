@@ -46,3 +46,10 @@ h1 {
   object-fit: cover;
 }
 
+.instructionList {
+  padding: 0;
+}
+
+.instructionDiv {
+  padding-left: 5px;
+}
