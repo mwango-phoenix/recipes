@@ -88,8 +88,8 @@ exports.byCategory = async (req, res) => {
   try {
     // get search phrase
     let searchTerm = req.body.searchTerm;
-    let recipeList = await Recipe.find( {$text:{ $search:searchTerm, $diacriticSensitive: true}});
-    res.render("search", { title: "Search Results", recipeList});
+    let recipeFind = await Recipe.find( {$text:{ $search:searchTerm, $diacriticSensitive: true}});
+    res.render("search", { title: "Search Results", recipeFind});
   } catch (error) {
     res.status(500).send({ message: error.message || "Error Occured" });
   }
