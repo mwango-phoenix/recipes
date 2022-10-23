@@ -90,53 +90,6 @@
   </div>
 </section>
 
-<!-- food by courses -->
-<!-- Drinks -->
-<section class="pb-4 pt-4">
-    <div class="d-flex mb-2 align-items-center">
-      <h2>Drinks</h2>
-      <a href="/recommended" class="ms-auto">View More</a>
-    </div>
-  
-    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-  
-      <% if(typeof recent.drinks !== 'undefined' && recent.drinks.length > 0) { %>
-          <% recent.drinks.forEach(function(recipe, index){  %>
-              <a href="/recipe/<%- recipe._id %>" class="col text-center category__link">
-                  <div class="category__img category__img--large shadow">
-                      <img src="/img/<%- recipe.image %>" alt="<%- recipe.name %>" loading="lazy" />
-                  </div>
-                  <div class="pt-1"><%- recipe.name %></div>
-              </a>
-          <% }) %>
-      <% } %>
-    </div>
-</section>
-
-<!-- Breakfast -->
-<section class="pb-4 pt-4">
-    <div class="d-flex mb-2 align-items-center">
-      <h2>Breakfast</h2>
-      <a href="/recommended" class="ms-auto">View More</a>
-    </div>
-  
-    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-  
-      <% if(typeof recent.breakfast !== 'undefined' && recent.breakfast.length > 0) { %>
-          <% recent.breakfast.forEach(function(recipe, index){  %>
-              <a href="/recipe/<%- recipe._id %>" class="col text-center category__link">
-                  <div class="category__img category__img--large shadow">
-                      <img src="/uploads/<%- recipe.image %>" alt="<%- recipe.name %>" loading="lazy" />
-                  </div>
-                  <div class="pt-1"><%- recipe.name %></div>
-              </a>
-          <% }) %>
-      <% }else { %>
-          <p>No items.</p>
-      <% } %>
-    </div>
-</section>
-
 <!-- submit recipe -->
 <section class="px-4 py-5 my-5 text-center">
   <!-- <img src="img/publish.jpg" alt="Publish recipe" class="d-block mx-auto mb-4 img-fluid" loading="lazy" width="566" height="208"> -->
