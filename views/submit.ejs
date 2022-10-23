@@ -33,7 +33,12 @@
         </div>
 
         <div class="col-12">
-          <label for="name" class="form-label">Ingredients</label><br>
+          <label for="description" class="form-label">Description</label>
+          <input type="text" name="description" id="description" class="form-control" required>
+        </div>
+
+        <div class="col-12">
+          <label for="ingredients" class="form-label">Ingredients</label><br>
           <div class="ingredientList">
             <div class="ingredientDiv mb-1">
               <input type="text" name="ingredients" class="form-control">
@@ -65,6 +70,9 @@
             <option selected>Select Category</option>
             <option value="Drinks">Drinks</option>
             <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Dessert">Dessert</option>
           </select>
         </div>
 

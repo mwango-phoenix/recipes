@@ -168,8 +168,9 @@ exports.byCategory = async (req, res) => {
     // Add data
     const newRecipe = new Recipe({
       name: req.body.name,
-      ingredients:req.body.ingredients,
-      instructions:req.body.instructions,
+      description: req.body.description,
+      ingredients: req.body.ingredients,
+      instructions: req.body.instructions,
       category: req.body.category,
       image: newImageName
     });
