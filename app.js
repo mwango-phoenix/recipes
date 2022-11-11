@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 
 const app = express();
-// const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 require('dotenv').config();
 
@@ -29,4 +29,4 @@ app.set('view engine', 'ejs');
 const routes = require('./server/routes/recipeRoutes.js')
 app.use('/', routes);
 
-// app.listen(port, ()=> console.log(`Listening to port ${port}`));
+app.listen(port, ()=> console.log(`Listening to port ${port}`));
