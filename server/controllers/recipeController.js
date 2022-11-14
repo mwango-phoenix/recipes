@@ -169,6 +169,7 @@ exports.byCategory = async (req, res) => {
     const newRecipe = new Recipe({
       name: req.body.name,
       description: req.body.description,
+      servingSize: req.body.servingSize,
       ingredients: req.body.ingredients,
       instructions: req.body.instructions,
       category: req.body.category,
