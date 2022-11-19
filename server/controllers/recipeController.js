@@ -188,6 +188,18 @@ exports.byCategory = async (req, res) => {
 };
 
 
+/**
+ * GET /map
+ * World Map display
+ */
+ exports.worldMap = async (req, res) => {
+  try {
+    res.render("map", { title: "World Map display" });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error Occured" });
+  }
+};
+
 
 // async function updateRecipe() {
 //   try {

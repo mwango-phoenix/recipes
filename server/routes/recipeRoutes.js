@@ -13,5 +13,6 @@ router.get("/explore-recent", recipeController.recentRecipes);
 router.get("/random", recipeController.getRandom);
 router.get("/submit", recipeController.addRecipe);
 router.post("/submit", recipeController.submitRecipe);
+router.get("/map", recipeController.worldMap);
 
 module.exports = router;
