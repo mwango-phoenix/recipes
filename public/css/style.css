@@ -58,7 +58,7 @@ h1 {
 .worldMap {
   background-color: #51ebff;
   margin: auto;
-  padding: min(2em, 3%);
+  padding: min(2em, 2.5%);
   width: 100%;
   height: 100%;
 }

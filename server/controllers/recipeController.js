@@ -194,7 +194,7 @@ exports.byCategory = async (req, res) => {
  */
  exports.worldMap = async (req, res) => {
   try {
-    res.render("map", { title: "World Map display" });
+    res.render("map", { title: "World Map" });
   } catch (error) {
     res.status(500).send({ message: error.message || "Error Occured" });
   }
