@@ -2,6 +2,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/categories">Categories</a></li>
     <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
   </ol>
 </nav>
@@ -18,7 +19,9 @@
       </div>
       <div class="col-12 mb-4">
         <!-- category tag -->
-        <i class="bi bi-tag"><%- recipe.category %></i>
+        <% recipe.category.forEach(function (ctgy, index) { %>
+          <i class="bi bi-tag"><%- ctgy %></i>
+        <%})%>
       </div>
       <div class="col-12">
         <em><%- recipe.description %></em>
@@ -47,7 +50,7 @@
           <ol>
             <!-- go through each ingredient from array -->
             <% recipe.instructions.forEach(function (instruction, index) { %>
-            <li class="pt-2"><%= instruction %></li>
+              <li class="pt-2"><%= instruction %></li>
             <%})%>
           </ol>
         </div>

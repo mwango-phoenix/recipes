@@ -77,3 +77,7 @@ path:hover {
   stroke: rgb(15, 14, 14);
   stroke-width: 1.5px;
 }
+
+.bi-tag {
+  margin-right: 0.5em;
+}
