@@ -28,7 +28,8 @@
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
     "mongodb": "^4.10.0",
-    "mongoose": "^6.6.2"
+    "mongoose": "^6.6.2",
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

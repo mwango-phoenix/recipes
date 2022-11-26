@@ -65,14 +65,12 @@ exports.byCategory = async (req, res) => {
 };
 
 /**
- * GET /recipe/:id
+ * GET /recipe/:slug
  * Recipes page
  */
  exports.exploreRecipes = async (req, res) => {
   try {
-    //get recipe id
-    let recipeId = req.params.id;
-    const recipe = await Recipe.findById(recipeId);
+    const recipe = await Recipe.findOne({ slug: req.params.slug });
     //render index page and display categories
     res.render("recipe", { title: "Recipe page", recipe });
   } catch (error) {
