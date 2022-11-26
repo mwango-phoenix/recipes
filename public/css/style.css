@@ -81,3 +81,15 @@ path:hover {
 .bi-tag {
   margin-right: 0.5em;
 }
+
+
+label input {
+  margin-right:0.2em;
+}
+
+label {
+  margin: 0 0.3rem;
+}
+.select-cat {
+  margin: 0;
+}

@@ -6,25 +6,24 @@
 </div>
 
 
-
 <div class="row justify-content-center">
   <!-- if submit successful display success message -->
   <% if(submitObj != '') { %>
-    <div class="col-8 alert alert-success" role="alert">
-      <%= submitObj %>
-    </div>
+  <div class="col-8 alert alert-success" role="alert">
+    <%= submitObj %>
+  </div>
   <% } %>
 
   <!-- if submission error, display error message -->
   <% if(errorObj != '') { %>
-    <div class="col-8 alert alert-danger" role="alert">
-      <%= errorObj[0].message %>
-    </div>
+  <div class="col-8 alert alert-danger" role="alert">
+    <%= errorObj[0].message %>
+  </div>
   <% } %>
   <div class="col-8">
-    
+
     <form action="/submit" enctype="multipart/form-data" method="POST">
-    
+
       <div class="row g-3">
 
         <div class="col-12">
@@ -54,7 +53,7 @@
         <div class="col-12">
           <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Ingredient</button>
           <button type="button" class="btn btn-outline-primary" id="rmvIngredientsBtn">- Ingredient</button>
-        </div>        
+        </div>
 
         <div class="col-12">
           <label for="instructions" class="form-label">Instructions</label>
@@ -68,28 +67,51 @@
         <div class="col-12">
           <button type="button" class="btn btn-outline-primary" id="addStepBtn">+ Step</button>
           <button type="button" class="btn btn-outline-primary" id="rmvStepBtn">- Step</button>
-        </div>  
-
-
-        <div class="col-12">
-          <label for="category">Select Category</label>
-          <select class="form-select form-control" name="category" aria-label="Category">
-            <option selected>Select Category</option>
-            <option value="Drinks">Drinks</option>
-            <option value="Breakfast">Breakfast</option>
-            <option value="Lunch">Lunch</option>
-            <option value="Dinner">Dinner</option>
-            <option value="Dessert">Dessert</option>
-            <option value="Snack">Snack</option>
-            <option value="Sauce">Sauce</option>
-            <option value="Soup/Stew">Soup/Stew</option>
-            <option value="Side Dish">Side Dish</option>
-            <option value="Bread">Bread</option>
-            <option value="Pastry">Pastry</option>
-            <option value="Pancakes/Waffles/Crepes">Pancakes/Waffles/Crepes</option>
-            <option value="Street Food">Street Food</option>
-          </select>
         </div>
+
+        <div>
+          <p class="select-cat">Select Category</p>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="drinks" value="Drinks">Drinks
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="breakfast" value="Breakfast">Breakfast
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="lunch" value="Lunch">Lunch
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="dinner" value="Dinner">Dinner
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="dessert" value="Dessert">Dessert
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="snack" value="Snack">Snack
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="sauce" value="Sauce">Sauce
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="soupStew" value="Soup/Stew">Soup/Stew
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="sideDish" value="Side Dish">Side Dish
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="bread" value="Bread">Bread
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="pastry" value="Pastry">Pastry
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="pwc" value="Pancakes/Waffles/Crepes">Pancakes/Waffles/Crepes
+          </label>
+          <label class="checkbox-inline">
+            <input class="form-check-input" type="checkbox" id="streetFood" value="Street Food">Street Food
+          </label>
+        </div>
+
 
         <div class="col-12">
           <label for="image">Product Image</label>
