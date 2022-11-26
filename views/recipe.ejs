@@ -19,9 +19,10 @@
       </div>
       <div class="col-12 mb-4">
         <!-- category tag -->
-        <% recipe.category.forEach(function (ctgy, index) { %>
-          <i class="bi bi-tag"><%- ctgy %></i>
-        <%})%>
+        <% if (recipe.category != null) {
+            recipe.category.forEach(function (ctgy, index) { %>
+              <i class="bi bi-tag"><%- ctgy %></i>
+        <%})}%>
       </div>
       <div class="col-12">
         <em><%- recipe.description %></em>
