@@ -3,7 +3,7 @@
   
     <% if(recipeList != '') { %>
         <%  for(let count = 0; count < 20; count++ ){  %>
-            <a href="/recipe/<%- recipeList[count]._id %>" class="col text-center category__link">
+            <a href="/recipe/<%- recipeList[count].slug %>" class="col text-center category__link">
                 <div class="category__img category__img--large shadow">
                     <img src="/uploads/<%- recipeList[count].image %>" alt="<%- recipeList[count].name %>" loading="lazy" />
                 </div>
