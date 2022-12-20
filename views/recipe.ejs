@@ -21,16 +21,16 @@
         <!-- category tag -->
         <% if (recipe.category != null) {
             recipe.category.forEach(function (ctgy, index) { %>
-              <i class="bi bi-tag"><%- ctgy %></i>
+              <a href="/categories/<%- ctgy %>" class="tag_link"><i class="bi bi-tag"><%-ctgy%></i></a>
         <%})}%>
       </div>
       <div class="col-12">
         <em><%- recipe.description %></em>
       </div>
       <div>
-          <% if(recipe.servingSize != null) { %>
-            <p>Servings: <%- recipe.servingSize %> </p>
-          <% } %>
+        <% if(recipe.servingSize != null) { %>
+          <p>Servings: <%- recipe.servingSize %> </p>
+        <% } %>
       </div>
       <div class="row pt-4">
         <div class="col-12">
@@ -38,9 +38,9 @@
           <h4>Ingredients</h4>
           <ul class="list-group list-group-flush">
             <!-- go through each ingredient from array -->
-            <% recipe.ingredients.forEach(function (ingredients, index) { %>
-            <li class="list-group-item"><%= ingredients%></li>
-            <%})%>
+            <% if (recipe.ingredients != null) { recipe.ingredients.forEach(function (ingredients, index) { %>
+              <li class="list-group-item"><%= ingredients%></li>
+            <%})}%>
           </ul>
         </div>
       </div>
@@ -49,17 +49,21 @@
           <!-- List of Instructions -->
           <h4>Instructions</h4>
           <ol>
-            <!-- go through each ingredient from array -->
-            <% recipe.instructions.forEach(function (instruction, index) { %>
+            <!-- go through each instruction from array -->
+            <% if (recipe.instructions != null) {recipe.instructions.forEach(function (instruction, index) { %>
               <li class="pt-2"><%= instruction %></li>
-            <%})%>
+            <%})}%>
           </ol>
         </div>
       </div>
     </div>
-
-
   </div>
+</div>
+<div class="float-end mt-3">
+  <a href="/edit/<%= recipe.id %>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i> Edit</a>
+  <form method="POST" action="/recipe/<%= recipe.id %>?_method=DELETE" class="d-inline">
+    <button type="submit" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete</button>
+  </form>
 </div>
 <% } else {%>
 <p>Recipe not found</p>

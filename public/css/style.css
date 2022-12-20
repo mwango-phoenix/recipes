@@ -90,3 +90,8 @@ label input {
 label {
   margin: 0 0.3rem;
 }
+
+.tag_link {
+  text-decoration: none;
+  color: inherit
+}
