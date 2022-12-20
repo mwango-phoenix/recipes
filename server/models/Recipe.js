@@ -8,7 +8,6 @@ const recipeSchema = new mongoose.Schema({
     },
     category: {
         type: [String], 
-        enum:['Drinks', 'Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Snack', 'Sauce', 'Soup/Stew', 'Side Dish', 'Bread', 'Pastry', 'Pancakes/Waffles/Crepes', 'Street Food'],
         required: 'This field is required.'
     },
     description: {
